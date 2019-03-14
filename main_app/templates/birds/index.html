@@ -3,21 +3,26 @@
 
 <h1>Birds List</h1>
 
-{% for bird in birds %}
-    <div class="card">
-        <a href="{% url 'detail' cat.id %}">
-            <div class="card-content">
-                <span class="card-title">{{ bird.name }}</span>
-                <p>Breed: {{ bird.breed }}</p>
-                <p>Description: {{ bird.description }}</p>
-                {% if bird.age > 0 %}
-                    <p>Age: {{ bird.age }}</p>
-                {% else %}
-                    <p>Age: Tiny</p>
-                {% endif %}
+<div style="display: flex; flex-wrap: wrap; justify-content: space-evenly; align-items: stretch; padding: 0;">
+    {% for bird in birds %}
+        <a href="{% url 'detail' bird.id %}" style="display: flex;">
+            <div class="card hoverable" style="width: 400px;">
+                <div class="card-content">
+                    <span class="card-title">{{ bird.name }}</span>
+                    <div class="card-image center-align">
+                        <img src="{{ bird.image }}" width=350px height=auto>
+                    </div>
+                    <p>Breed: {{ bird.breed }}</p>
+                    <p>Description: {{ bird.description }}</p>
+                    {% if bird.age > 0 %}
+                        <p>Age: {{ bird.age }}</p>
+                    {% else %}
+                        <p>Age: Tiny</p>
+                    {% endif %}
+                </div>
             </div>
         </a>
-    </div>
-{% endfor %}
+    {% endfor %}
+</div>
 
 {% endblock %}
